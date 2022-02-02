@@ -34,11 +34,11 @@ interface Props {
   onCompletedTodo: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-const TodoView: React.FC<Props> = ({ todo, onDeleteTodo, onCompletedTodo }) => {
+const TodoView = (props: Props) => {
+  const { todo, onCompletedTodo, onDeleteTodo } = props;
   return (
     <li key={todo.id}>
       <Id>{todo.id}</Id>
-
       <TodoText>{todo.todo}</TodoText>
       <Dates>{todo.created}</Dates>
       {todo.completed ? (
