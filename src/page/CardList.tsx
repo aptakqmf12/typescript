@@ -4,10 +4,20 @@ import { useIntersectionObserverOptions, pokeData, pokeObj } from "../types/type
 import axios, { AxiosResponse } from "axios";
 import CardBox from "../components/CardBox";
 
+const InfiniteContainer = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  background-color: #d60e43;
+`;
+
 const CardList = () => {
   // 인피니티 스크롤 관련 state
   const [count, setCount] = useState<number>(0);
   const [target, setTarget] = useState<HTMLDivElement | null | undefined>(null);
+  const countRef = useRef<number>(0);
+  const targetRef = useRef<HTMLDivElement>(null);
   //포켓몬 데이터 관련된 state
   const [pokeData, setPokeData] = useState<pokeData[]>([]);
 
@@ -25,7 +35,7 @@ const CardList = () => {
 
   const option: useIntersectionObserverOptions = {
     root: null,
-    rootMargin: "0px",
+    rootMargin: "5px",
     threshold: 0.5,
   };
 
@@ -33,14 +43,13 @@ const CardList = () => {
     entries.forEach((entry) => {
       //target에 겹쳤을때
       if (entry.isIntersecting) {
-        //target에 겹쳤다면 일단 관측을 중단시키고
-        observer.disconnect();
-        // count를 증가시킨뒤
+        countRef.current += 5;
         setCount(count + 5);
         // 증가된 count를 넘겨서 다음번째 data를 받아와서 뒤에 붙임
-        fetchData(count).then((res) => {
+        fetchData(countRef.current).then((res) => {
           setPokeData([...pokeData, ...res.data.results]);
         });
+        alert("추가됨");
       }
     });
   };
@@ -55,11 +64,14 @@ const CardList = () => {
 
   return (
     <>
-      <div className="infinite-container">
+      <InfiniteContainer>
         {pokeData?.map((data, i) => {
           return <CardBox key={i} id={i} name={data.name} setTarget={setTarget} />;
         })}
-      </div>
+        <div ref={targetRef} style={{ height: "200px" }}>
+          loading...
+        </div>
+      </InfiniteContainer>
     </>
   );
 };
