@@ -1,29 +1,38 @@
-import React, { SetStateAction } from "react";
+import React from "react";
 import styled from "styled-components";
 import { pokeData } from "../types/types";
 
 const StyledCard = styled.div`
   display: flex;
-  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: calc(33% - 9px);
+  height: 300px;
+  margin: 5px;
+  border: 2px black solid;
+  background-color: ${(props) => props.theme.MainColor.snow};
+  font-weight: bold;
+  text-align: center;
+  transition: all 0.3s ease;
 
-  .wrap {
-    width: 200px;
-    height: 200px;
-    border: 2px black solid;
-    background-color: ${(props) => props.theme.MainColor.snow};
-    color: black;
-    font-weight: bold;
-    text-align: center;
-    &.active {
-      background-color: ${(props) => props.theme.MainColor.kobi};
-    }
-    &:nth-child(5n) {
-      color: yellow;
-    }
+  @media ${(props) => props.theme.Device.tablet} {
+    width: calc(49% - 9px);
+  }
+  @media ${(props) => props.theme.Device.mobile} {
+    width: calc(100% - 9px);
+  }
+
+  &:hover {
+    background-color: ${(props) => props.theme.MainColor.kobi};
+    transform: translate(0.1rem, 0.1rem);
+  }
+  &:nth-child(10n) {
+    color: #d60e43;
   }
 `;
-interface Props {
-  name: string;
+
+interface Props extends pokeData {
   id: number;
   setTarget: React.Dispatch<React.SetStateAction<HTMLDivElement | null | undefined>>;
 }
@@ -31,16 +40,14 @@ interface Props {
 const CardBox: React.FC<Props> = ({ id, name, setTarget }) => {
   return (
     <StyledCard ref={setTarget}>
-      <div className="wrap">
-        <p>{id}</p>
-        <p>{name}</p>
-        <p>
-          <img
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id + 1}.png`}
-            alt="pokemon"
-          />
-        </p>
-      </div>
+      <p>{id}</p>
+      <p>{name}</p>
+      <p>
+        <img
+          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id + 1}.png`}
+          alt="pokemon"
+        />
+      </p>
     </StyledCard>
   );
 };

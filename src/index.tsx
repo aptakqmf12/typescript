@@ -2,12 +2,18 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import { ThemeProvider } from "styled-components";
+import { BrowserRouter as Router } from "react-router-dom";
 import theme from "./style/theme";
+import { Header, Footer } from "./components/common/index";
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
     <React.StrictMode>
-      <App />
+      <Router>
+        <Header />
+        <App />
+        <Footer />
+      </Router>
     </React.StrictMode>
   </ThemeProvider>,
   document.getElementById("root"),

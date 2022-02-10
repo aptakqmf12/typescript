@@ -13,8 +13,7 @@ interface useIntersectionObserverOptions {
 
 interface pokeData {
   name: string;
-  url: string;
-  img?: string;
+  url?: string; //열어봤더니 이미지url이 아니라 detail url이었음
 }
 
 interface pokeObj {

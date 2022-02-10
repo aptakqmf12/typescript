@@ -37,5 +37,11 @@ const MainColor = {
   violet: "#60435f",
 };
 
-const theme = { fontSize, Margin, Padding, GrayScale, MainColor };
+const Device = {
+  mobile: `(max-width: ${"500px"})`,
+  tablet: `(max-width: ${"960px"})`,
+  pc: `(min-width: ${"1920px"})`,
+};
+
+const theme = { fontSize, Margin, Padding, GrayScale, MainColor, Device };
 export default theme;
