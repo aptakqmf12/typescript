@@ -9,7 +9,10 @@
 
 - page/CardList.tsx = ***Intersection Observer***를 이용한 ***InfiniteScroll + Lazy Loading***을 이용한 pokeAPI호출 , 데이더 호출전 Skeleton UI 사용 
 
-![캡처](https://user-images.githubusercontent.com/55612761/152276344-9c2594a9-5226-454d-99e2-fa41935c18d3.PNG)
+![스켈](https://user-images.githubusercontent.com/55612761/153342469-49b2433b-83f1-412a-8ee0-713bbb27722d.PNG)
+![2](https://user-images.githubusercontent.com/55612761/153342483-e06b19b3-45ca-4b97-afb8-6a64dbbc17e7.PNG)
+![3](https://user-images.githubusercontent.com/55612761/153342495-dbe23184-dc53-4d19-8b49-c44e6af68f0f.PNG)
+
 
 
 ### enviroment
